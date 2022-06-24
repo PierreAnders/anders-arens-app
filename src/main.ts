@@ -1,6 +1,6 @@
 import {marbellaBlackS, marbellaBlackM, marbellaBlackL, getStock, marbellaBlackSStock, marbellaBlackMStock, marbellaBlackLStock} from "./production/production"
 import {getOrder, guillaumeBourda, guillaumeBourdaOrder, pierreUntas, pierreUntasOrder } from "./front_end/front_end"
-import {getShipping} from "./shipping/shipping"
+import {getShipping, deliveryTime} from "./shipping/shipping"
 
 console.log("\n")
 
@@ -12,9 +12,13 @@ console.log("\n")
 console.log("------------------ Here is our catalogue: -------------------")
 console.log("\n")
 
-console.log(`${marbellaBlackS.style} ${marbellaBlackS.color} ${marbellaBlackS.size}, €${marbellaBlackS.price}, delivery delay: ${marbellaBlackS.getDeliveryDelay()} days`)
-console.log(`${marbellaBlackM.style} ${marbellaBlackM.color} ${marbellaBlackM.size}, €${marbellaBlackM.price}, delivery delay: ${marbellaBlackM.getDeliveryDelay()} days`)
-console.log(`${marbellaBlackL.style} ${marbellaBlackL.color} ${marbellaBlackL.size}, €${marbellaBlackL.price}, delivery delay: ${marbellaBlackL.getDeliveryDelay()} days`)
+deliveryTime(marbellaBlackSStock)
+deliveryTime(marbellaBlackMStock)
+deliveryTime(marbellaBlackLStock)
+
+console.log(`${marbellaBlackS.style} ${marbellaBlackS.color} ${marbellaBlackS.size}, €${marbellaBlackS.price}, delivery delay: ${marbellaBlackSStock.timeToShip} days`)
+console.log(`${marbellaBlackM.style} ${marbellaBlackM.color} ${marbellaBlackM.size}, €${marbellaBlackM.price}, delivery delay: ${marbellaBlackMStock.timeToShip} days`)
+console.log(`${marbellaBlackL.style} ${marbellaBlackL.color} ${marbellaBlackL.size}, €${marbellaBlackL.price}, delivery delay: ${marbellaBlackLStock.timeToShip} days`)
 
 console.log("\n")
 console.log("----------------- Here are our orders: ---------------------")

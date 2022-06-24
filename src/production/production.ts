@@ -12,8 +12,8 @@ export let marbellaBlackS = new Clothing();
     marbellaBlackS.color = "Black";
     marbellaBlackS.size = "S";
     marbellaBlackS.price = 115;
-    marbellaBlackS.shippingTime = 2;
-    marbellaBlackS.productionDelay = 7;
+    //marbellaBlackS.shippingTime = 2;
+    //marbellaBlackS.productionDelay = 7;
 
 export let marbellaBlackM = new Clothing();
     marbellaBlackM.ref = "MAM18BK-M";   
@@ -22,8 +22,8 @@ export let marbellaBlackM = new Clothing();
     marbellaBlackM.color = "Black";
     marbellaBlackM.size = "M";
     marbellaBlackM.price = 115;
-    marbellaBlackM.shippingTime = 2;
-    marbellaBlackM.productionDelay = 0;
+    //marbellaBlackM.shippingTime = 2;
+    //marbellaBlackM.productionDelay = 0;
 
 export let marbellaBlackL = new Clothing();
     marbellaBlackL.ref = "MAM18BK-L";
@@ -32,8 +32,8 @@ export let marbellaBlackL = new Clothing();
     marbellaBlackL.color = 'Black';
     marbellaBlackL.size = 'L';
     marbellaBlackL.price = 115;
-    marbellaBlackL.shippingTime = 2;
-    marbellaBlackL.productionDelay = 7;
+    //marbellaBlackL.shippingTime = 2;
+    //marbellaBlackL.productionDelay = 7;
 
 // Je déclare le stock de produits
 

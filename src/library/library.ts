@@ -8,11 +8,6 @@ export class Clothing {
 	color : string;
 	size : string;
 	price : number;
-	shippingTime : number;
-	productionDelay : number;
-	getDeliveryDelay(): number {
-	return this.shippingTime + this.productionDelay;
-	}
 }
 
 export class Customer {
@@ -34,4 +29,5 @@ export class Order {
 export class Stock {
 	reference : Clothing;
 	quantity : number;
+	timeToShip: number;
 }
