@@ -1,81 +1,73 @@
 // le developpeur "front_end" se charge d'obtenir les informations des clients
 // Il se charge d'obtenir les informations des commandes
 
-import {Order, Customer, Clothing } from "../library/library"
-import { AddMarbellaBlackS, AddMarbellaBlackM, AddMarbellaBlackL} from "../production/production"
-
+import { Order, Customer, Clothing } from "../library/library";
+import { makeMarbella } from "../production/production";
+import { computeDeliveryTime } from "../shipping/shipping";
 
 // (J'importe les informations client de l'interface uilisateur)
 // Je déclare les clients pour exporter leurs informations
 
-export var guillaumeBourda = new Customer()
-guillaumeBourda.customerFirstName = "Guillaume"
-guillaumeBourda.customerLastName = "Bourda"
-guillaumeBourda.customerAddress = "25 rue Paul Gelos, 64500 Saint Jean de Luz, France"
-guillaumeBourda.customerMail = "gbourda@rugbycentric.com"
-guillaumeBourda.customerCardNumber = 4397720003099030
-guillaumeBourda.isFirstTimeCustomer = true
+/**
+ *
+ *   On va faire une fonction qui simule l'utilisation d'une interface
+ *  utilisateur (ex: un site web en HTML)
+ *
+ *     1. l'utilisateur ouvre le site
+ *     2. il parcours les produits
+ *     3. il ajoute des produits au panier
+ *     4. ---> c'est là qu'on commence notre fonction principale
+ *
+ */
+export function startFrontEnd() {
+  console.log("---- startFrontEnd ----");
 
-export var pierreUntas = new Customer()
-pierreUntas.customerFirstName = "Pierre"
-pierreUntas.customerLastName = "Untas"
-pierreUntas.customerAddress = "88 rue Lagrange, 33000 Bordeaux, France"
-pierreUntas.customerMail = "pierre.untas@gmail.com"
-pierreUntas.customerCardNumber = 4397720003099031
-pierreUntas.isFirstTimeCustomer = false
+  // je créer un customer
+  // @todo Pierre :  créer un constructeur pour la class Customer
+  // le constructeur va prendre des paramètre (age, nom, ect.. )
+  let pierreUntas = new Customer();
+  pierreUntas.customerFirstName = "Pierre";
+  pierreUntas.customerLastName = "Untas";
+  pierreUntas.customerAddress = "88 rue Lagrange, 33000 Bordeaux, France";
+  pierreUntas.customerMail = "pierre.untas@gmail.com";
+  pierreUntas.customerCardNumber = 4397720003099031;
+  pierreUntas.isFirstTimeCustomer = false;
 
-// (j'importe les commandes de l'interface utilisateur)
-// Je déclare les commandes pour exporter leurs informations
+  // je lui créer une commande
+  // @todo pierre : créer un constructeur pour la classe order qui va prendre un
+  // Customer en paramètre
+  let commande = new Order();
+  commande.customer = pierreUntas;
 
-export const guillaumeBourdaOrder = new Order()
-guillaumeBourdaOrder.clothing = AddMarbellaBlackS()
-guillaumeBourdaOrder.quantity = 1
-guillaumeBourdaOrder.number = 101
-guillaumeBourdaOrder.customer = guillaumeBourda
+  let t1 = makeMarbella("Black", "small");
+  let t2 = makeMarbella("Black", "medium");
+  let t3 = makeMarbella("Black", "large");
+  let t4 = makeMarbella("Red", "large");
 
-export const pierreUntasOrder = new Order()
-pierreUntasOrder.clothing = AddMarbellaBlackL()
-pierreUntasOrder.quantity = 1
-pierreUntasOrder.number = 102
-pierreUntasOrder.customer = pierreUntas
+  // j'ajoute les vêtements un par un à la commande
+  addToCart(commande, t1);
+  addToCart(commande, t2);
+  addToCart(commande, t3);
+  addToCart(commande, t4);
 
-// Je crée une fonction pour obtenir les commandes
+  // maintenant que j'ai une commande : je calcule le temps de delivery
+  computeDeliveryTime(commande);
 
-export function getOrder(order: Order){
-    console.log(`${order.customer.customerFirstName} ${order.customer.customerLastName}: ${order.clothing.name}, quantity: ${order.quantity}, order number: ${order.number}`)
+  // calculer le prix et le cout de delivery
+  commande.computeTotalDeliveryTime();
+  commande.computeTotalPrice();
+
+  // displayFinalOrder
+  displayFinalOrder(commande);
 }
 
-// Je crée un fonction pour ajouter les produits au panier
-
-export function AddToCart(order: Order) {
-    var names: Array<Clothing> = [];
-
-    for (let clothing of order.clothing.name){
-        if (clothing == "Marbella Black S"){
-        let name = AddMarbellaBlackS();
-        names.push(name);
-    } else if (clothing == "Marbella Black M"){
-        let name = AddMarbellaBlackM();
-        names.push(name);
-    } else (clothing == "Marbella Black L");{
-        let name = AddMarbellaBlackL();
-        names.push(name);
-    }
-}
-    ServeOrder(order.number, names);
+// affiche le résumé de la commande à l'écran
+function displayFinalOrder(commande: Order) {
+  console.log("Votre commande va prendre %d jours", commande.deliveryTime);
+  console.log("Votre commande coute %d euros", commande.totalPrice);
 }
 
-export function ServeOrder(
-    orderNumber: number,
-    clothing: Array<Clothing>,
-) {
-console.log("Voici votre commande numéro: ", orderNumber);
-
-var price = 0;
-
-for (let clothe of clothing){
-    console.log("1", clothe.name);
-    price += clothe.price;
-}
- console.log("Total : ", price)
+// prendre une commande et un vêtement et il va mettre le vetement dans la commande
+export function addToCart(commande: Order, fringue: Clothing) {
+  commande.clothings.push(fringue);
 }

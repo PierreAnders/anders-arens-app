@@ -1,17 +1,5 @@
-import {
-  AddMarbellaBlackS,
-  AddMarbellaBlackM,
-  AddMarbellaBlackL,
-  getStock,
-} from "./production/production";
-import {
-  AddToCart,
-  getOrder,
-  guillaumeBourda,
-  guillaumeBourdaOrder,
-  pierreUntas,
-  pierreUntasOrder,
-} from "./front_end/front_end";
+import { getStock, makeMarbella } from "./production/production";
+import { startFrontEnd } from "./front_end/front_end";
 import { getShipping, getDeliveryTime } from "./shipping/shipping";
 /*import {Clothing} from "./library/library"*/
 
@@ -22,51 +10,43 @@ console.log("               WELCOME TO ANDERS ARENS' APP                  ");
 console.log("-------------------------------------------------------------");
 
 console.log("\n");
-console.log("------------------ Here is our catalogue: -------------------");
-console.log("\n");
 
-console.log(
-  `${AddMarbellaBlackS().style} ${AddMarbellaBlackS().color} ${
-    AddMarbellaBlackS().size
-  }, €${AddMarbellaBlackS().price}, delivery delay: ${getDeliveryTime([
-    AddMarbellaBlackS(),
-  ])} days`
-);
-console.log(
-  `${AddMarbellaBlackM().style} ${AddMarbellaBlackM().color} ${
-    AddMarbellaBlackM().size
-  }, €${AddMarbellaBlackM().price}, delivery delay: ${getDeliveryTime([
-    AddMarbellaBlackM(),
-  ])} days`
-);
-console.log(
-  `${AddMarbellaBlackL().style} ${AddMarbellaBlackL().color} ${
-    AddMarbellaBlackL().size
-  }, €${AddMarbellaBlackL().price}, delivery delay: ${getDeliveryTime([
-    AddMarbellaBlackL(),
-  ])} days`
-);
+startFrontEnd();
 
-console.log("\n");
-console.log("----------------- Here are our orders: ---------------------");
-console.log("\n");
+// console.log("\n");
+// console.log("------------------ Here is our catalogue: -------------------");
+// console.log("\n");
 
-getOrder(guillaumeBourdaOrder);
-getOrder(pierreUntasOrder);
+// let t1 = makeMarbella("Black", "small");
+// let t2 = makeMarbella("Black", "medium");
+// let t3 = makeMarbella("Black", "large");
+// let t4 = makeMarbella("Red", "large");
 
-console.log("\n");
-console.log("----------------- Here are our stock: ---------------------");
-console.log("\n");
+// console.log("t1 -> ", t1.style, t1.color, t1.ref);
+// console.log("t2 -> ", t2);
+// console.log("t3 -> ", t3);
+// console.log("t4 -> ", t4);
 
-console.log(getStock(AddMarbellaBlackS()));
-console.log(getStock(AddMarbellaBlackM()));
-console.log(getStock(AddMarbellaBlackL()));
+// console.log("\n");
+// console.log("----------------- Here are our orders: ---------------------");
+// console.log("\n");
 
-getShipping(guillaumeBourdaOrder, guillaumeBourda);
-getShipping(pierreUntasOrder, pierreUntas);
+// getOrder(guillaumeBourdaOrder);
+// getOrder(pierreUntasOrder);
 
-AddToCart(guillaumeBourdaOrder);
+// console.log("\n");
+// console.log("----------------- Here are our stock: ---------------------");
+// console.log("\n");
 
-console.log("\n");
-console.log("-------------------------------------------------------------");
-console.log("\n");
+// console.log(getStock(AddMarbellaBlackS()));
+// console.log(getStock(AddMarbellaBlackM()));
+// console.log(getStock(AddMarbellaBlackL()));
+
+// getShipping(guillaumeBourdaOrder, guillaumeBourda);
+// getShipping(pierreUntasOrder, pierreUntas);
+
+// AddToCart(guillaumeBourdaOrder);
+
+// console.log("\n");
+// console.log("-------------------------------------------------------------");
+// console.log("\n");
