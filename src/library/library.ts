@@ -1,13 +1,13 @@
 
-// je crée des classes
-
 export class Clothing {
-	ref : string;
-	name : string;
+	name : Array<string>;
 	style : string;
 	color : string;
 	size : string;
+	ref : string;
 	price : number;
+	stock : number
+	deliveryTime : number
 }
 
 export class Customer {
@@ -25,9 +25,3 @@ export class Order {
 	number : number;
 	customer : Customer;
 } 
-
-export class Stock {
-	reference : Clothing;
-	quantity : number;
-	timeToShip: number;
-}
