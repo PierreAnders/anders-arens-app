@@ -1,59 +1,39 @@
-// le developpeur "production" déclare les références de produits
-// Il déclare le stock
 
-import { Clothing , Stock } from "../library/library";
+import { Clothing } from "../library/library";
 
-// Je déclare les produits de la collection Anders Arens
+export function makeMarbella(color: string, size: string): Clothing {
+  
+  var marbella = new Clothing();
 
-export let marbellaBlackS = new Clothing();
-    marbellaBlackS.ref = "MAM18BK-S";
-    marbellaBlackS.name = "Marbella Black S";
-    marbellaBlackS.style = "Marbella";
-    marbellaBlackS.color = "Black";
-    marbellaBlackS.size = "S";
-    marbellaBlackS.price = 115;
-    //marbellaBlackS.shippingTime = 2;
-    //marbellaBlackS.productionDelay = 7;
+    marbella.style = "Marbella";
 
-export let marbellaBlackM = new Clothing();
-    marbellaBlackM.ref = "MAM18BK-M";   
-    marbellaBlackM.name = "Marbella Black M";
-    marbellaBlackM.style = "Marbella";
-    marbellaBlackM.color = "Black";
-    marbellaBlackM.size = "M";
-    marbellaBlackM.price = 115;
-    //marbellaBlackM.shippingTime = 2;
-    //marbellaBlackM.productionDelay = 0;
+    marbella.color = color;
 
-export let marbellaBlackL = new Clothing();
-    marbellaBlackL.ref = "MAM18BK-L";
-    marbellaBlackL.name = 'Marbella Black L';
-    marbellaBlackL.style = 'Marbella';
-    marbellaBlackL.color = 'Black';
-    marbellaBlackL.size = 'L';
-    marbellaBlackL.price = 115;
-    //marbellaBlackL.shippingTime = 2;
-    //marbellaBlackL.productionDelay = 7;
+    if ("medium" === size) {
+    marbella.size = "M";
+    } else if ("large" === size) {
+    marbella.size = "L";
+    } else if ("small" === size) {
+    marbella.size = "S";
+    }
 
-// Je déclare le stock de produits
+    marbella.price = 115;
 
-export let marbellaBlackSStock = new Stock();
-    marbellaBlackSStock.reference = marbellaBlackS;
-    marbellaBlackSStock.quantity = 0;
+    computeReference(marbella);
 
-export let marbellaBlackMStock = new Stock();
-    marbellaBlackMStock.reference = marbellaBlackM;
-    marbellaBlackMStock.quantity = 1;
-
-export let marbellaBlackLStock = new Stock();
-    marbellaBlackLStock.reference = marbellaBlackL;
-    marbellaBlackLStock.quantity = 0;
-
-// Je crée une fonction pour obtenir le stock
-
-export function getStock (stock: Stock) {
-    return stock.reference.name + ": " + stock.quantity
+    return marbella;
 }
 
+// calcule la référence de n'importe quel vêtement
+function computeReference(clothing: Clothing) {
 
+  if (clothing.style == "Marbella") {
+    clothing.ref = "MAM18";
 
+  if (clothing.color == "Black") {
+      clothing.ref += "BK";
+  }
+  clothing.ref += "-" + clothing.size; // "-S" ou "-M"
+  }
+
+}

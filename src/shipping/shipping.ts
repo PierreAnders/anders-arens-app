@@ -1,19 +1,35 @@
 // le developpeur "shipping" déclare les expéditions
 
-import {Order, Customer, /*Clothing, */Stock} from "../library/library"
+import { Clothing, Order, Customer } from "../library/library";
+
+let stockMarbella = 5;
 
 // Je crée une fonction pour obtenir les informations de livraison
+//@todo Pierre : à coder
 
-export function getShipping(order: Order , customer : Customer){
-console.log(`order number: ${order.number}, delivery address: ${customer.customerAddress}`)
+export function computeDeliveryTime(commande: Order) {
+  
+  if (commande.clothings.length === 1) {
+    commande.deliveryTime = 1 
+   } else (commande.clothings.length > 1);{
+commande.deliveryTime = commande.clothings.length * 3 - 1
+   }
+   return commande.deliveryTime
+}
+  //juste un test : je dis que c'est 1j pour n'importe quel vêtement
+  //je parcours les fringues de ma commande et j'ajoute 2j à chaque vêtement
+
+export function computeDeliveryPrice(commande: Order){
+  if (commande.clothings.length === 1) {
+    commande.deliveryPrice = 9
+  } else (commande.clothings.length > 1);{
+    commande.deliveryPrice = commande.clothings.length * 4.5
+  } return commande.deliveryPrice
+}
+// Je definis le coût de livraison à 9€ pour un produit et à 4,5€ par vêtement pour une commande de plusieurs produits.
+
+export function computeTotalPriceOrder(commande: Order){
+  console.log(computeDeliveryPrice(commande) + commande.computeTotalPrice())
 }
 
-// Je crée une solution pour définir les délais de livraison: un délais d'acheminement du colis de 2 jours et un délais de production de 7 jours. Si la pièce est en stock le délais de livraison est donc de deux jours et si elle n'est pas en stock le délais de livraison est de 9 jours.
-
-export function deliveryTime(stock: Stock){
-    if (stock.quantity > 0){ 
-    stock.timeToShip = 2;
-    } else {
-        stock.timeToShip = 2 + 7;
-    }
-}
+// Je calcule la coût total de la commande livraison comprise

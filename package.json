@@ -1,0 +1,14 @@
+{
+  "name": "Anders Arens",
+  "version": "0.1.0",
+  "private": true,
+  "engines": {
+    "node": "16.15.1"
+  },
+  "scripts": {
+    "start": "node dist/main.js"
+  },
+  "devDependencies": {
+    "typescript": "^4.7.3"
+  }
+}
