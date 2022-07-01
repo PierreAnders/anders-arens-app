@@ -8,7 +8,6 @@ export class Clothing {
   ref: string;
   price: number;
   stock: number;
-  //deliveryTime: number;
 }
 
 export class Customer {
@@ -29,8 +28,6 @@ export class Customer {
   }
 }
 
-// la commande - c'est à dire l'équivalent du panier + infos
-
 export class Order { 
   clothings: Array<Clothing>;
   number: number;
@@ -38,25 +35,18 @@ export class Order {
   deliveryTime : number;
   deliveryPrice: number;
   totalPrice: number;
+  totalPriceOrder: number;
 
   constructor(customer: Customer) {
-    this.clothings = new Array(); // initialize le tableau
-    this.number = (Math.floor(Math.random() * 1000)); // numéro aléatoire
+    this.clothings = new Array(); 
+    this.number = (Math.floor(Math.random() * 1000));
     this.customer = customer;
-    this.deliveryTime = 0;
-    this.totalPrice = 0;
   }
 
-  // parcours mon tableau et additionne le prix
  computeTotalPrice() {
     this.totalPrice = 0;
     for (let fringue of this.clothings) {
-    //console.log("prix = ", fringue.price);
-      this.totalPrice += fringue.price;
+    this.totalPrice += fringue.price;
     } return this.totalPrice
   } 
-
-  //computeTotalPriceOrder(commande){
-    //console.log(computeDeliveryPrice(commande) + commande.computeTotalPrice(commande))
-  }
-
+}

@@ -24,7 +24,6 @@ export function makeMarbella(color: string, size: string): Clothing {
     return marbella;
 }
 
-// calcule la référence de n'importe quel vêtement
 function computeReference(clothing: Clothing) {
 
   if (clothing.style == "Marbella") {
@@ -33,7 +32,7 @@ function computeReference(clothing: Clothing) {
   if (clothing.color == "Black") {
       clothing.ref += "BK";
   }
-  clothing.ref += "-" + clothing.size; // "-S" ou "-M"
+  clothing.ref += "-" + clothing.size;
   }
 
 }
