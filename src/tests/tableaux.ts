@@ -1,179 +1,274 @@
 export function startTest() {
+  console.log("\n");
+  console.log("=====================================================\n");
 
-console.log("\n");
-console.log("=====================================================\n");
+  console.log("---------------------- ACCOUNTS ----------------------\n");
 
-console.log("---------------------- ACCOUNTS ----------------------\n")
+  class Token {
+    name: string;
+    number: number;
+    address: string;
+    wallet: string;
+    coldStorage: boolean;
+    rateInDollar: number;
+    valueInDollar: number;
 
-class Token {
-  name : string;
-  number: number;
-  address: string;
-  wallet: string;
-  coldStorage: boolean;
-  rateInDollar: number;
-  valueInDollar: number;
+    constructor(
+      name: string,
+      number: number,
+      address: string,
+      wallet: string,
+      coldStorage: boolean,
+      rateInDollar: number
+    ) {
+      this.name = name;
+      this.number = number;
+      this.address = address;
+      this.wallet = wallet;
+      this.coldStorage = coldStorage;
+      this.rateInDollar = rateInDollar;
+      this.valueInDollar = Math.round(number * rateInDollar * 100) / 100;
+    }
+  }
 
-  constructor(name: string, number: number, address: string,
-     wallet: string, coldStorage: boolean, rateInDollar: number){
-    this.name = name;
-    this.number = number;
-    this.address = address;
-    this.wallet = wallet;
-    this.coldStorage = coldStorage;
-    this.rateInDollar = rateInDollar;
-    this.valueInDollar = Math.round ((number * rateInDollar) * 100)/100;
-    } 
+  var ethereum = new Token(
+    "ethereum",
+    2.8061,
+    "0x4A15301238b39572BB258576173fD2aCbC993088",
+    "ledger",
+    true,
+    1120.29
+  );
+
+  var bitcoin = new Token(
+    "bitcoin",
+    0.009723,
+    "bc1qz8f9qtcmsh2yg2frdn4zmv0qnlz484f8evpn6d",
+    "ledger",
+    true,
+    19775
+  );
+
+  var ethereumClassic = new Token(
+    "ethereum classic",
+    2.9943,
+    "0x4A15301238b39572BB258576173fD2aCbC993088",
+    "ledger",
+    true,
+    14.79
+  );
+
+  var cronos = new Token(
+    "cronos",
+    1000,
+    "cro1ptxv0f87z7hgcqyf43lzca9rdl30j8w8uddqhn",
+    "ledger",
+    true,
+    0.1199
+  );
+
+  var cronosCryptoDotCom = new Token(
+    "cronos on exchange",
+    3024.29,
+    "0xCa70cc7CB30275B7081C4D06733470895b1CD3e3",
+    "crypto.com",
+    false,
+    0.1179
+  );
+
+  var ravencoinCryptoDotCom = new Token(
+    "ravencoin on exchange",
+    3064.16,
+    "no address",
+    "crypto.com",
+    false,
+    0.023478
+  );
+
+  var veChain = new Token(
+    "veChain",
+    5028.94,
+    "0x924C495A2fF86f6C297a577a4aD17Ee59342ad3C",
+    "sync via ledger",
+    true,
+    0.022579
+  );
+
+  var veThor = new Token(
+    "veThor",
+    4820,
+    "0x50Ee8Fe6060A54101802d5753b4ff9E3115aeA26",
+    "sync via ledger",
+    true,
+    0.001435
+  );
+
+  var Flux = new Token(
+    "flux",
+    306.9090368,
+    "t1NaDPQAzECNWYCgyRnm1sbg189JGyyUkcJ",
+    "zelcore",
+    false,
+    0.4339
+  );
+
+  var accounts = [
+    ethereum,
+    bitcoin,
+    ethereumClassic,
+    cronos,
+    cronosCryptoDotCom,
+    ravencoinCryptoDotCom,
+    veChain,
+    veThor,
+    Flux,
+  ];
+
+  /////////////////////////////////////////////////////////////////////////
+
+  console.log("===== ALL ACCOUNTS =====");
+
+  console.log(accounts);
+
+  console.log("\n");
+  console.log("------------------------------------------------------\n");
+
+  /////////////////////////////////////////////////////////////////////////
+
+  console.log("===== SAFE ACCOUNTS =====");
+
+  var safeAccounts = accounts.filter(function (account) {
+    return account.coldStorage == true;
+  });
+
+  console.log(safeAccounts);
+
+  console.log("\n");
+  console.log("------------------------------------------------------\n");
+
+  /////////////////////////////////////////////////////////////////////////
+
+  console.log("===== UNSAFE ACCOUNTS =====");
+
+  var unsafeAccounts = accounts.filter(function (account) {
+    return account.coldStorage == false;
+  });
+
+  console.log(unsafeAccounts);
+
+  console.log("\n");
+  console.log("------------------------------------------------------\n");
+
+  /////////////////////////////////////////////////////////////////////////
+
+  console.log("===== TOTAL VALUE ACCOUNTS IN DOLLARS =====");
+
+  // const totalValueAccounts = accounts.reduce((accumulator, obj) => {
+  // return accumulator + obj.valueInDollar;}, 0);
+
+  let totalValueAccounts = 0;
+
+  for (let account of accounts) {
+    totalValueAccounts += account.valueInDollar;
+  }
+
+  console.log(totalValueAccounts);
+
+  console.log("\n");
+  console.log("------------------------------------------------------\n");
+
+  totalValueAccounts = 0; // on remet à 0
+
+  for (let i = 0; i < accounts.length; i++) {
+    totalValueAccounts += accounts[i].valueInDollar;
+  }
+
+  console.log(totalValueAccounts);
+
+  console.log("\n");
+  console.log("------------------------------------------------------\n");
+
+  totalValueAccounts = 0; // on remet à 0
+
+  accounts.map(function (account) {
+    return (totalValueAccounts += account.valueInDollar);
+  });
+
+  console.log(totalValueAccounts);
 }
+/*
+  /////////////////////////////////////////////////////////////////////////
 
-var ethereum = new Token("ethereum", 2.8061, "0x4A15301238b39572BB258576173fD2aCbC993088", 
-  "ledger", true, 1120.29);
+  console.log("===== TOTAL VALUE SAFE ACCOUNTS IN DOLLARS =====");
 
-var bitcoin = new Token("bitcoin", 0.009723, "bc1qz8f9qtcmsh2yg2frdn4zmv0qnlz484f8evpn6d",
-   "ledger", true, 19775);
+  const totalValueSafeAccounts = safeAccounts.reduce((accumulator, obj) => {
+    return Math.round((accumulator + obj.valueInDollar) * 100) / 100;
+  }, 0);
 
-var ethereumClassic = new Token("ethereum classic", 2.9943, 
-"0x4A15301238b39572BB258576173fD2aCbC993088", "ledger", true, 14.79);
+  console.log(totalValueSafeAccounts);
 
-var cronos = new Token("cronos", 1000, "cro1ptxv0f87z7hgcqyf43lzca9rdl30j8w8uddqhn", 
-"ledger", true, 0.1199);
+  console.log("\n");
+  console.log("------------------------------------------------------\n");
 
-var cronosCryptoDotCom = new Token ("cronos on exchange", 3024.29, 
-"0xCa70cc7CB30275B7081C4D06733470895b1CD3e3", 
-"crypto.com", false, 0.1179);
+  /////////////////////////////////////////////////////////////////////////
 
-var ravencoinCryptoDotCom = new Token ("ravencoin on exchange", 3064.16, 
-"no address", "crypto.com", false, 0.023478);
+  console.log("===== TOTAL VALUE UNSAFE ACCOUNTS IN DOLLARS =====");
 
-var veChain = new Token ("veChain", 5028.94, "0x924C495A2fF86f6C297a577a4aD17Ee59342ad3C",
- "sync via ledger", true, 0.022579);
+  const totalValueUnsafeAccounts = unsafeAccounts.reduce((accumulator, obj) => {
+    return accumulator + obj.valueInDollar;
+  }, 0);
 
-var veThor = new Token ("veThor", 4820, "0x50Ee8Fe6060A54101802d5753b4ff9E3115aeA26", 
-"sync via ledger", true, 0.001435);
+  console.log(totalValueUnsafeAccounts);
 
-var Flux = new Token ("flux", 306.9090368, "t1NaDPQAzECNWYCgyRnm1sbg189JGyyUkcJ", 
-"zelcore", false, 0.4339);
+  console.log("\n");
+  console.log("------------------------------------------------------\n");
 
-var accounts = [
-  ethereum, bitcoin, ethereumClassic, cronos, cronosCryptoDotCom, ravencoinCryptoDotCom, veChain, veThor, Flux
-];
+  /////////////////////////////////////////////////////////////////////////
 
-/////////////////////////////////////////////////////////////////////////
+  console.log("===== SECURE TOKEN PERCENTAGE =====");
 
-console.log("===== ALL ACCOUNTS =====")
+  const secureTokenPercentage =
+    Math.round(((totalValueSafeAccounts * 100) / totalValueAccounts) * 100) /
+    100;
 
-console.log(accounts);
+  console.log(secureTokenPercentage);
 
-console.log("\n");
-console.log("------------------------------------------------------\n");
+  console.log("\n");
+  console.log("------------------------------------------------------\n");
 
-/////////////////////////////////////////////////////////////////////////
+  /////////////////////////////////////////////////////////////////////////
 
-console.log("===== SAFE ACCOUNTS =====")
+  console.log("===== TOKEN PERCENTAGE =====");
 
-var safeAccounts = accounts.filter(function(account) {
-  return account.coldStorage == true;
-});
+  console.log("-----------");
+  console.log("Ethereum");
+  const ethereumPercentage =
+    Math.round(((ethereum.valueInDollar * 100) / totalValueAccounts) * 100) /
+    100;
+  console.log(ethereumPercentage);
 
-console.log(safeAccounts);
+  console.log("-----------");
+  console.log("Bitcoin");
+  const bitcoinPercentage =
+    Math.round(((bitcoin.valueInDollar * 100) / totalValueAccounts) * 100) /
+    100;
+  console.log(bitcoinPercentage);
 
-console.log("\n");
-console.log("------------------------------------------------------\n");
+  console.log("-----------");
+  console.log("Ethereum Classic");
+  const ethereumClassicPercentage =
+    Math.round(
+      ((ethereumClassic.valueInDollar * 100) / totalValueAccounts) * 100
+    ) / 100;
+  console.log(ethereumClassicPercentage);
 
-/////////////////////////////////////////////////////////////////////////
-
-console.log("===== UNSAFE ACCOUNTS =====")
-
-var unsafeAccounts = accounts.filter(function(account) {
-  return account.coldStorage == false;
-});
-
-console.log(unsafeAccounts);
-
-console.log("\n");
-console.log("------------------------------------------------------\n");
-
-/////////////////////////////////////////////////////////////////////////
-
-console.log("===== TOTAL VALUE ACCOUNTS IN DOLLARS =====")
-
-const totalValueAccounts = accounts.reduce((accumulator, obj) => {
-return accumulator + obj.valueInDollar;}, 0);
-
-console.log(totalValueAccounts);
-
-console.log("\n");
-console.log("------------------------------------------------------\n");
-
-/////////////////////////////////////////////////////////////////////////
-
-console.log("===== TOTAL VALUE SAFE ACCOUNTS IN DOLLARS =====")
-
-const totalValueSafeAccounts = safeAccounts.reduce((accumulator, obj) => {
-  return Math.round(( accumulator + obj.valueInDollar)*100)/100;}, 0);
-  
-console.log(totalValueSafeAccounts);
-
-console.log("\n");
-console.log("------------------------------------------------------\n");
-
-/////////////////////////////////////////////////////////////////////////
-
-console.log("===== TOTAL VALUE UNSAFE ACCOUNTS IN DOLLARS =====")
-
-const totalValueUnsafeAccounts = unsafeAccounts.reduce((accumulator, obj) => {
-  return accumulator + obj.valueInDollar;}, 0);
-  
-console.log(totalValueUnsafeAccounts)
-
-console.log("\n");
-console.log("------------------------------------------------------\n");
-
-/////////////////////////////////////////////////////////////////////////
-
-console.log("===== SECURE TOKEN PERCENTAGE =====")
-
-const secureTokenPercentage = Math.round(((totalValueSafeAccounts * 100)/totalValueAccounts)*100)/100;
-  
-console.log(secureTokenPercentage);
-
-console.log("\n");
-console.log("------------------------------------------------------\n");
-
-/////////////////////////////////////////////////////////////////////////
-
-console.log("===== TOKEN PERCENTAGE =====")
-
-console.log("-----------")
-console.log("Ethereum")
-const ethereumPercentage = Math.round(((ethereum.valueInDollar * 100)/totalValueAccounts)*100)/100;
-console.log(ethereumPercentage);
-
-console.log("-----------")
-console.log("Bitcoin")
-const bitcoinPercentage = Math.round(((bitcoin.valueInDollar * 100)/totalValueAccounts)*100)/100;
-console.log(bitcoinPercentage);
-
-console.log("-----------")
-console.log("Ethereum Classic")
-const ethereumClassicPercentage = Math.round(((ethereumClassic.valueInDollar * 100)/totalValueAccounts)*100)/100;
-console.log(ethereumClassicPercentage);
-
-
-
-
-
-
-
-
-//var sumOfallValueAccounts = 0
-//for (let i  = 0; i < allValueAccounts.length; i++){
-//  sumOfallValueAccounts += allValueAccounts[i];
-//}
-//console.log(sumOfallValueAccounts);
-
+  //var sumOfallValueAccounts = 0
+  //for (let i  = 0; i < allValueAccounts.length; i++){
+  //  sumOfallValueAccounts += allValueAccounts[i];
+  //}
+  //console.log(sumOfallValueAccounts);
 }
-  /*console.log("\n\n");
+/*console.log("\n\n");
 
   console.log("======= Training on arrays ======= \n\n");
 
@@ -342,7 +437,3 @@ myWallets.push(new Wallet("veChain", 5000),new Wallet("VeThor", 5000))
 
 console.log(myWallets)
 */
-
-
-
-
