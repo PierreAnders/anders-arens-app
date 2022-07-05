@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <h2 id="subtitle"></h2>
+
+    <button>je suis un bouton qui fait rien</button>
+    <button onclick="console.log('click de bouton')">
+      je suis un bouton qui execute un console.log
+    </button>
+    <button onclick="displayMessage()">afficher message</button>
+    <button onclick="displayMessage()">afficher message</button>
+
+    <button onclick="displaySubtitle()">change le sous-titre</button>
+    <button onclick="changeMessage('coucou')">change le message</button>
+
+    <div id="message"></div>
+
+
+    <h3>Formulaire</h3>
+
+
+      <input type="text" id="input1"></input>
+      <br />
+      checkbox<input type="checkbox"></input>
+
+      <button onclick="validate()">valider</button>
+    </form>
+
+
+    <h3>Liste de produits</h3>
+    <div id="list"></div>
+
+    <button onclick="displayProducts()">afficher</button>
+
+  </body>
+</html>
+
+<script type="text/javascript" src="./monpremierscript.js"></script>

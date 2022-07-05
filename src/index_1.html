@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <h1>Hello World</h1>
+    <h2 id="subtitle"></h2>
+
+    <button onclick="displaySubtitle()">change le sous-titre</button>
+  </body>
+</html>
+
+<script>
+  console.log("Ici commence le javascript ... enfin on programme");
+
+  displaySubtitle();
+
+  // cette fonction récupère un élément de la page HTML et change son contenu HTML
+  function displaySubtitle() {
+    const number = Math.random();
+    const subtitle = "ceci est un title " + number;
+    console.log(subtitle);
+    // javascript accède à ton DOM (document objec model) - cad tous les éleméts de ta page HTML
+    // ici on cherche l'élémlent qui a l'id "subtitle" et on lui change son contenu HTML
+    document.getElementById("subtitle").innerHTML = subtitle;
+  }
+</script>
