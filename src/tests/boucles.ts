@@ -1,44 +1,74 @@
 export function startTest() {
-  console.log("@@@@@@@@@  Tests sur les boucles @@@@@@@@@@@\n\n");
+  
+  console.log("\n\n");
 
-  /*---------------------------------
-    Faire  une boucle Nb fois
-    ------------------------------*/
-  const nb = 3;
+  console.log("======= Training on loops =======\n\n");
+
+// ===============================
+// Faire une boucle number de fois
+// ===============================
+
+  const number = 3;
   let count = 0;
 
-  for (let i = 0; i < nb; i++) {
+  for (let i = 0; i < number; i++) {
     console.log("i= ", i);
     count += 1; // j'incrément count de 1
   }
 
-  console.log("nombre de boucles (count)= ", count);
+  console.log("number of loops (count)= ", count);
 
   console.log("\n\n");
 
-  /*---------------------------------
-    boucle sur les éléments d'un tableau
+// ===================================================
+// boucle sur les éléments d'un tableau
+// passer d'un elément à un autre d'un tableau, 
+// du début à la fin, s'appelle "parcourir" le tableau
+// ===================================================
 
-
-    passer d'un elément à un autre d'un tableau, du début à la fin, s'appelle "parcourir" le tableau
-
-
-
-    ------------------------------*/
-
-  const monTableau = ["a", "b", "c"];
+  const myArray = ["a", "b", "c"];
 
   // je vais de i=0 à i<3  -----> 0, 1, 2
-  for (let i = 0; i < monTableau.length; i++) {
-    console.log("index =  %s valeur = %s", i, monTableau[i]); // j'utilise l'index de mon tableau (i)
+  for (let i = 0; i < myArray.length; i++) {
+    console.log("index = %s value = %s", i, myArray[i]); 
+    // j'utilise l'index de mon tableau (i)
   }
 
   console.log("\n\n");
 
-  // je parcours mon tableau et à chaque boucle, j'assigne la valeur de l'élément du tablaeau à une variable que j'appelle 'elt'
-  for (let elt of monTableau) {
-    console.log("element = ", elt);
+// =========================================
+// je parcours mon tableau et à chaque boucle, 
+// j'assigne la valeur de l'élément du tablaeau 
+// à une variable que j'appelle 'element'
+// =========================================
+
+  for (let element of myArray) {
+    console.log("element = ", element);
   }
 
   console.log("\n\n");
+
+
+  // ----------------------------------------
+  // ----------------------------------------
+
+  
+  const bitcoin = 21;
+  let myBitcoin = 0;
+
+  for (let i=0; i<bitcoin; i++){
+  myBitcoin += 1;
+  console.log (myBitcoin);
+  }
+
+  const myBlockchain = ['one', 'two', 'three', 'four', 'five']
+
+  for (let i=0; i<myBlockchain.length; i++){
+  console.log(myBlockchain[i])
+  }
+
+  for (let block of myBlockchain){
+  console.log(block)
+  }
+
 }

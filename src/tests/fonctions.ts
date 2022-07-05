@@ -14,6 +14,7 @@ export function startTest() {
   // ici ma fonction est faite pour recevoir un paramètre de type string
   // elle décide de l'appeler 'name'
   // dans son scope elle accedera à ce paramètre via le nom 'name'
+
   function hello(name: string) {
     console.log("salut : ", name);
   }
@@ -47,9 +48,9 @@ export function startTest() {
   }
 
   // équivalent sans fonction :
-  console.log("je fais mon taff (sans fonction)");
-  console.log("je fais mon taff (sans fonction)");
-  console.log("je fais mon taff (sans fonction)");
+  // console.log("je fais mon taff (sans fonction)");
+  // console.log("je fais mon taff (sans fonction)");
+  // console.log("je fais mon taff (sans fonction)");
 
   /*
       3. on peut passer des paramètre à une fonction
@@ -121,7 +122,7 @@ export function startTest() {
   }
   let obj = new MaClass(100);
   incrementObjet(obj);
-  console.log("pojo valeur ", obj.valeur); // 11
+  console.log("pojo valeur ", obj.valeur); // 101
 
   /* ------------------------------------------------------------------
    *     Le scope d'une fonction !!
@@ -130,4 +131,100 @@ export function startTest() {
   /* ------------------------------------------------------------------
    *     les fonctions inline
    * ------------------------------------------------------------------*/
+
+  console.log("\n \n");
+  console.log ("// ----------------------------------------")
+  console.log ("// ----------------------------------------")
+  console.log("\n \n")
+
+
+  function whatsUp(men: string){
+    console.log("What's up %s ?", men)
+  }
+  
+  let man = "John";
+  let man2 = "Fred";
+  let man3 = "Alfred";
+  
+  whatsUp(man);
+  whatsUp(man2);
+  whatsUp(man3);
+
+
+console.log("\n \n");
+console.log ("// ----------------------------------------")
+console.log ("// ----------------------------------------")
+console.log("\n \n")
+
+
+function test(x : string){
+  console.log(x)
+}
+
+let a = "b"
+
+for (let i = 0; i < 3; i++) {
+  test(a);
+}
+
+console.log("\n \n");
+console.log ("// ----------------------------------------")
+console.log ("// ----------------------------------------")
+console.log("\n \n");
+
+function sell(shitcoin) {
+  console.log("I sell ");
+  shitcoin.tokens += 1;
+}
+
+let shitcoin = {
+  tokens: 0,
+};
+
+for (let i = 0; i < 3; i++) {
+  sell(shitcoin);
+}
+console.log("I sell %s times ", shitcoin.tokens);
+
+
+console.log("\n \n");
+console.log ("// ----------------------------------------")
+console.log ("// ----------------------------------------")
+console.log("\n \n");
+
+
+function addByOne(tokens: number): number {
+  tokens += 1;
+  return tokens;
+}
+
+let tokenA = 10;
+addByOne(tokenA); 
+console.log("tokens ", tokenA);
+
+let tokenB = 10;
+tokenB = addByOne(tokenB);
+console.log("tokens ", tokenB); 
+
+
+console.log("\n \n");
+console.log ("// ----------------------------------------")
+console.log ("// ----------------------------------------")
+console.log("\n \n");
+
+  function incrementCoins(bitcoin) {
+    bitcoin.token +=2;
+  }
+
+  class Coins{
+    token: number;
+    constructor(value) {
+      this.token = value;
+    }
+  }
+    let bitcoin = new Coins(19);
+    incrementCoins(bitcoin);
+    console.log("number of bitcoins: ", bitcoin.token);
+  
+
 }

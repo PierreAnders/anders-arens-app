@@ -28,4 +28,7 @@ export function startTest() {
   function coucou(person: Person) {
     console.log("Coucou %s you are %d old \n\n", person.name, person.age);
   }
+
+
+  
 }
